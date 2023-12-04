@@ -21,8 +21,3 @@ def get_image_text_description(img_processor: Any, img_model: Any, img_url: str)
     out = img_model.generate(**input)
     description = img_processor.decode(out[0], skip_special_tokens=True)
     return description
-
-
-# img_processor, img_model = get_img_processor_and_model()
-# print(get_image_text_description(img_processor, img_model,
-#                                  '/Users/chungewang/Documents/classes/text_info_sys/cs410-final-proj/code/mike.natter/2023-10-26_03-04-00_UTC_1.jpg'))

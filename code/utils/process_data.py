@@ -74,7 +74,18 @@ def get_text_from_image_name_list(
     return text_description_list, file_path_list
 
 
-def collate_post_into_preprocessed_text_array(directory_path: str):
+def collate_post_into_preprocessed_text_array(
+    directory_path: str, is_process_image: bool
+):
+    """
+    The collate_post_into_preprocessed_text_array function takes in a directory path and a boolean value indicating whether or not to process images.
+    It returns two dictionaries: one containing the original text of each post and another containing the preprocessed text of each post.
+    If is_process_image is True, it also returns two lists: one containing image file paths for each post and another containing descriptions for those images.
+
+    :param directory_path: str: Specify the path to the directory containing all of our text files
+    :param is_process_image: bool: Determine whether or not to process the images
+    :return: Two dictionaries: text_post_data_set, img_text_data_set
+    """
     text_post_data_set = {ORIGINAL_DICT_KEY: [], PREPROCESSED_DICT_KEY: []}
     img_text_data_set = {IMAGE_FILE_PATH_KEY: [], IMAGE_DESCRIPTION_KEY: []}
     img_processor, img_model = get_img_processor_and_model()
@@ -90,12 +101,13 @@ def collate_post_into_preprocessed_text_array(directory_path: str):
             text_post_data_set[ORIGINAL_DICT_KEY].append(post_text)
 
             # preprocess images and convert them to text
-            img_file_names = get_images_with_prefix(directory_path, filename[:-4])
-            text_description_list, file_path_list = get_text_from_image_name_list(
-                directory_path, img_file_names, img_processor, img_model
-            )
-            img_text_data_set[IMAGE_DESCRIPTION_KEY].append(text_description_list)
-            img_text_data_set[IMAGE_FILE_PATH_KEY].append(file_path_list)
+            if is_process_image:
+                img_file_names = get_images_with_prefix(directory_path, filename[:-4])
+                text_description_list, file_path_list = get_text_from_image_name_list(
+                    directory_path, img_file_names, img_processor, img_model
+                )
+                img_text_data_set[IMAGE_DESCRIPTION_KEY].append(text_description_list)
+                img_text_data_set[IMAGE_FILE_PATH_KEY].append(file_path_list)
 
     return text_post_data_set, img_text_data_set
 
