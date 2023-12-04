@@ -67,8 +67,3 @@ def get_similarity(
         similarity = cos(source_sentence_embedding, test_sentence_embedding)
         similarities.append(similarity)
     return similarities
-
-
-# Sentences we want sentence embeddings for
-# tokenizer, model = load_models()
-# print(get_similarity(source_query="I like violence", test_sentences=["I shoot guns", "I heal the sick"], tokenizer=tokenizer, model=model))
