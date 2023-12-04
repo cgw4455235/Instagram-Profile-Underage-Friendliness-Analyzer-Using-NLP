@@ -12,6 +12,7 @@ from utils.constants import (
     IMAGE_FILE_PATH_KEY,
 )
 from utils.img_to_text import get_image_text_description, get_img_processor_and_model
+import itertools
 
 
 def get_images_with_prefix(directory_path, prefix):
@@ -120,6 +121,9 @@ def process_files(directory_path):
     return text_post_data_set, img_text_data_set
 
 
-# collate_post_into_preprocessed_text_array(
-#     "/Users/chungewang/Documents/classes/text_info_sys/cs410-final-proj/code/mike.natter"
-# )
+def get_max_score_and_post_data(similarity_scores, post_data):
+    if post_data and isinstance(post_data[0], list):
+        post_data = list(itertools.chain.from_iterable(post_data))
+    max_score = max(similarity_scores)
+    max_score_idx = similarity_scores.index(max_score)
+    return max_score, post_data[max_score_idx]

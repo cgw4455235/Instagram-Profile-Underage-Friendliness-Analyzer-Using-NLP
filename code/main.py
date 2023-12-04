@@ -1,11 +1,15 @@
 import utils.topic_types as topic_types
 from instagram_analysis_pipeline import instagram_analysis_pipeline
-import itertools
-from utils.constants import ORIGINAL_DICT_KEY
+from utils.process_data import get_max_score_and_post_data
+from utils.constants import (
+    ORIGINAL_DICT_KEY,
+    IMAGE_FILE_PATH_KEY,
+)
+from user_interface.ui import get_ui
 
 if __name__ == "__main__":
     # Modify this
-    profile_name = "vegasgungirl"
+    profile_name = "mmafighting"
     topic_name, topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY
 
     (
@@ -16,20 +20,19 @@ if __name__ == "__main__":
         text_post_data_set,
         img_text_data_set,
     ) = instagram_analysis_pipeline(
-        profile_name=profile_name, topic_query=topic_query, is_process_image=False
+        profile_name=profile_name, topic_query=topic_query, is_process_image=True
     )
-    # print(text_post_data_set[PREPROCESSED_DICT_KEY])
-    # print(img_text_data_set[IMAGE_DESCRIPTION_KEY])
 
-    def get_max_score_and_post_data(similarity_scores, post_data):
-        if post_data and isinstance(post_data[0], list):
-            post_data = list(itertools.chain.from_iterable(post_data))
-        max_score = max(similarity_scores)
-        max_score_idx = similarity_scores.index(max_score)
-        print(max_score_idx)
-        return max_score, post_data[max_score_idx]
-
-    max_score, most_likely_post = get_max_score_and_post_data(
+    max_text_score, most_likely_text_post = get_max_score_and_post_data(
         text_post_topic_similarity_scores, text_post_data_set[ORIGINAL_DICT_KEY]
     )
-    print(most_likely_post)
+    max_img_score, most_likely_img_path = get_max_score_and_post_data(
+        image_topic_similarity_scores, img_text_data_set[IMAGE_FILE_PATH_KEY]
+    )
+    get_ui(
+        img_path=most_likely_img_path,
+        instagram_post_text=most_likely_text_post,
+        topic_name=topic_name,
+        profile_name=profile_name,
+        is_instagram_fulfilling_theme=True,
+    )

@@ -56,13 +56,20 @@ class InstagramUnderageFriendlinessCheck:
         self.text_content.config(text=instagram_post_text)
 
 
-root = tk.Tk()
-front_end = InstagramUnderageFriendlinessCheck(root)
-
-img_path = ""  # Replace with an actual image path
-instagram_post_text = "This is a sample Instagram post about something healthy.This is a sample Instagram post about something healthy.This is a sample Instagram post about something healthy.This is a sample Instagram post about something healthy.This is a sample Instagram post about something healthy."
-
-front_end.set_display_content(
-    img_path, instagram_post_text, "violent", True, "mike.natter"
-)
-root.mainloop()
+def get_ui(
+    img_path,
+    instagram_post_text,
+    topic_name,
+    profile_name,
+    is_instagram_fulfilling_theme,
+) -> None:
+    root = tk.Tk()
+    front_end = InstagramUnderageFriendlinessCheck(root)
+    front_end.set_display_content(
+        img_path,
+        instagram_post_text,
+        topic_name,
+        is_instagram_fulfilling_theme,
+        profile_name,
+    )
+    root.mainloop()
