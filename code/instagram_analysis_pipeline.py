@@ -12,7 +12,12 @@ from typing import List, Tuple, Union
 
 
 def instagram_analysis_pipeline(
-    profile_name: str, topic_query: str, is_process_image: bool
+    profile_name: str,
+    topic_query: str,
+    is_process_image: bool,
+    current_path: str,
+    get_thematic_analysis: bool = True,
+    get_sentiment_analysis: bool = True,
 ) -> Tuple[Union[List, List, List, List]]:
     """
     The instagram_analysis_pipeline function takes in a profile name, topic query and is_process_image flag.
@@ -27,7 +32,6 @@ def instagram_analysis_pipeline(
     :return: A tuple of 6 lists: text_post_topic_similarity_scores, image_topic_similarity_scores, text_post_sentiment_scores, image_sentiment_scores, text_post_data_set, img_text_data_set.
     """
     text_similarity_tokenizer, text_similarity_model = load_text_similarity_models()
-    current_path = os.path.dirname(os.path.realpath(__file__))
     sentiment_analysis_pipeline = get_sentiment_analysis_pipeline()
 
     if profile_name not in os.listdir(current_path):
@@ -37,39 +41,56 @@ def instagram_analysis_pipeline(
     text_post_data_set, img_text_data_set = collate_post_into_preprocessed_text_array(
         directory_path=instagram_profile_data_path, is_process_image=is_process_image
     )
-
-    text_post_topic_similarity_scores = get_similarity(
-        source_query=topic_query,
-        test_sentences=text_post_data_set[PREPROCESSED_DICT_KEY],
-        tokenizer=text_similarity_tokenizer,
-        model=text_similarity_model,
-    )
-    image_topic_similarity_scores = (
+    text_post_topic_similarity_scores = (
         get_similarity(
             source_query=topic_query,
-            test_sentences=list(
-                itertools.chain.from_iterable(img_text_data_set[IMAGE_DESCRIPTION_KEY])
-            ),
+            test_sentences=text_post_data_set[PREPROCESSED_DICT_KEY],
             tokenizer=text_similarity_tokenizer,
             model=text_similarity_model,
         )
-        if is_process_image
+        if get_thematic_analysis
+        else []
+    )
+    image_topic_similarity_scores = (
+        (
+            get_similarity(
+                source_query=topic_query,
+                test_sentences=list(
+                    itertools.chain.from_iterable(
+                        img_text_data_set[IMAGE_DESCRIPTION_KEY]
+                    )
+                ),
+                tokenizer=text_similarity_tokenizer,
+                model=text_similarity_model,
+            )
+            if is_process_image
+            else []
+        )
+        if get_thematic_analysis
         else []
     )
 
-    text_post_sentiment_scores = get_sentiment_analysis_scores(
-        sentiment_analysis_pipeline=sentiment_analysis_pipeline,
-        sentences=text_post_data_set[PREPROCESSED_DICT_KEY],
+    text_post_sentiment_scores = (
+        get_sentiment_analysis_scores(
+            sentiment_analysis_pipeline=sentiment_analysis_pipeline,
+            sentences=text_post_data_set[PREPROCESSED_DICT_KEY],
+        )
+        if get_sentiment_analysis
+        else []
     )
 
     image_sentiment_scores = (
-        get_sentiment_analysis_scores(
-            sentiment_analysis_pipeline=sentiment_analysis_pipeline,
-            sentences=itertools.chain.from_iterable(
-                img_text_data_set[IMAGE_DESCRIPTION_KEY]
-            ),
+        (
+            get_sentiment_analysis_scores(
+                sentiment_analysis_pipeline=sentiment_analysis_pipeline,
+                sentences=itertools.chain.from_iterable(
+                    img_text_data_set[IMAGE_DESCRIPTION_KEY]
+                ),
+            )
+            if is_process_image
+            else []
         )
-        if is_process_image
+        if get_sentiment_analysis
         else []
     )
 
