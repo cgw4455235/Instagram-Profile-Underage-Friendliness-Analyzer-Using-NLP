@@ -35,7 +35,7 @@ def instagram_analysis_pipeline(
     sentiment_analysis_pipeline = get_sentiment_analysis_pipeline()
 
     if profile_name not in os.listdir(current_path):
-        download_random_n_posts(5, profile_name)
+        download_random_n_posts(5, profile_name, current_path + "/" + "profile_data")
 
     instagram_profile_data_path = current_path + "/" + profile_name
     text_post_data_set, img_text_data_set = collate_post_into_preprocessed_text_array(
