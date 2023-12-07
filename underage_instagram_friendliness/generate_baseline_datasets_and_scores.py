@@ -35,6 +35,18 @@ MEAN_POSITIVE_IMG_SENTIMENT_SCORE_KEY = "mean_img_positive_sentiment_score"
 MEAN_NEGATIVE_IMG_SENTIMENT_SCORE_KEY = "mean_img_negative_sentiment_score"
 MEAN_NEUTRAL_IMG_SENTIMENT_SCORE_KEY = "mean_img_neutral_sentiment_score"
 
+MEAN_TEXT_SENTIMENT_KEYS = {
+    SentimentLabels.positive.value: MEAN_POSITIVE_TEXT_SENTIMENT_SCORE_KEY,
+    SentimentLabels.negative.value: MEAN_NEGATIVE_TEXT_SENTIMENT_SCORE_KEY,
+    SentimentLabels.neutral.value: MEAN_NEUTRAL_TEXT_SENTIMENT_SCORE_KEY,
+}
+
+MEAN_IMAGE_SENTIMENT_KEYS = {
+    SentimentLabels.positive.value: MEAN_POSITIVE_IMG_SENTIMENT_SCORE_KEY,
+    SentimentLabels.negative.value: MEAN_NEGATIVE_IMG_SENTIMENT_SCORE_KEY,
+    SentimentLabels.neutral.value: MEAN_NEUTRAL_IMG_SENTIMENT_SCORE_KEY,
+}
+
 
 def flatten_list_and_get_mean(list_of_list):
     return torch.mean(torch.FloatTensor(list(chain.from_iterable(list_of_list))))
