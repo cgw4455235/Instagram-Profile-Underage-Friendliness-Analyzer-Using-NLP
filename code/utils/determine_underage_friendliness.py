@@ -9,7 +9,7 @@ from utils.constants import (
 )
 from utils.process_data import get_max_score_and_post_data
 import itertools
-from typing import Optional, Tuple, Union
+from typing import Optional, Tuple, Union, Any
 
 
 def determine_if_theme_existent(
@@ -43,6 +43,7 @@ def find_max_score_and_determine_if_theme_in_profile(
     image_topic_similarity_scores,
     text_post_data_set,
     img_text_data_set,
+    threshold_percentage,
 ):
     max_text_score, most_likely_text_post = get_max_score_and_post_data(
         text_post_topic_similarity_scores, text_post_data_set[ORIGINAL_DICT_KEY]
@@ -53,13 +54,13 @@ def find_max_score_and_determine_if_theme_in_profile(
     is_theme_present_in_text = determine_if_theme_existent(
         max_post_theme_score=max_text_score,
         theme=topic_name,
-        threshold_percentage=10,
+        threshold_percentage=threshold_percentage,
         is_image=False,
     )
     is_theme_present_in_image = determine_if_theme_existent(
         max_post_theme_score=max_img_score,
         theme=topic_name,
-        threshold_percentage=10,
+        threshold_percentage=threshold_percentage,
         is_image=True,
     )
 
@@ -106,7 +107,7 @@ def determine_if_post_has_sentiment(
 
 def find_max_negative_sentiment_score_and_determine_if_sentiment_is_present(
     sentiment_scores: List[dict], pre_processed_posts: List[str], is_image: bool
-):
+) -> Tuple[Union[Any, bool]]:
     post_key = ORIGINAL_DICT_KEY if not is_image else IMAGE_FILE_PATH_KEY
     max_score_and_label, max_post = find_max_sentiment_score(
         sentiment_scores=sentiment_scores,
