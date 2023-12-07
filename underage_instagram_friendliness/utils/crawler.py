@@ -9,7 +9,7 @@ def download_random_n_posts(top_n: int, profile_name: str, subpath: str) -> None
     crawler_password = os.getenv("instagram_password")
     L = Instaloader(download_videos=False)
     L.load_session_from_file(
-        "acc_test_use", "/Users/chungewang/.config/instaloader/session-acc_test_use"
+        "acc_test_use", "/Users/asdsda/.config/instaloader/session-acc_test_use"
     )
     profile = Profile.from_username(L.context, profile_name)
     random_posts = profile.get_posts()
