@@ -63,7 +63,11 @@ def get_sentiment_scores_for_list_of_profiles(profiles_to_process: List[str]):
 
     # Process sentiment analysis scores
     pickle_dump_location = (
-        current_path + "/" + RAW_SENTIMENT_BASELINE_SCORE_PICKLE_FILE_NAME
+        current_path
+        + "/"
+        + "baseline_scores"
+        + "/"
+        + RAW_SENTIMENT_BASELINE_SCORE_PICKLE_FILE_NAME
     )
     download_folder_path = current_path + SENTIMENT_BASELINE_DATASET_SUBDIR
     if RAW_SENTIMENT_BASELINE_SCORE_PICKLE_FILE_NAME not in os.listdir(current_path):
@@ -103,7 +107,11 @@ def get_thematic_scores_for_list_of_profiles(profiles_to_process: List[str]):
 
     # Process sentiment analysis scores
     pickle_dump_location = (
-        current_path + "/" + RAW_THEME_BASELINE_SCORE_PICKLE_FILE_NAME
+        current_path
+        + "/"
+        + "baseline_scores"
+        + "/"
+        + RAW_THEME_BASELINE_SCORE_PICKLE_FILE_NAME
     )
     download_folder_path = current_path + "/" + THEME_BASELINE_DATASET_SUBDIR
 
@@ -279,6 +287,34 @@ def extract_sentiment_score_mean_and_save_to_pickle(
             f,
         )
     return means
+
+
+def read_baseline_sentiment_scores():
+    current_path = os.path.dirname(os.path.realpath(__file__))
+    mean_pickle_location = (
+        current_path
+        + "/"
+        + "baseline_scores"
+        + "/"
+        + BASELINE_SENTIMENT_SCORE_PICKLE_FILE_NAME
+    )
+    with open(mean_pickle_location, "rb") as f:
+        mean_scores = pickle.load(f)
+    return mean_scores
+
+
+def read_baseline_thematic_scores():
+    current_path = os.path.dirname(os.path.realpath(__file__))
+    mean_pickle_location = (
+        current_path
+        + "/"
+        + "baseline_scores"
+        + "/"
+        + BASELINE_THEME_SCORE_PICKLE_FILE_NAME
+    )
+    with open(mean_pickle_location, "rb") as f:
+        mean_scores = pickle.load(f)
+    return mean_scores
 
 
 if __name__ == "__main__":

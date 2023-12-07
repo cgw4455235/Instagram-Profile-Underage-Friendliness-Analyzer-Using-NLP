@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # Modify this
     profile_name = "vegasgungirl"
     topic_name, topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY
-    directory = os.path.dirname(os.path.realpath(__file__)) + "/" + "profile_data"
+    directory = os.path.dirname(os.path.realpath(__file__))
     (
         text_post_topic_similarity_scores,
         image_topic_similarity_scores,
@@ -24,7 +24,7 @@ if __name__ == "__main__":
         profile_name=profile_name,
         topic_query=topic_query,
         is_process_image=True,
-        current_path=directory,
+        current_path=directory + "/profile_data",
     )
 
     max_text_score, most_likely_text_post = get_max_score_and_post_data(
