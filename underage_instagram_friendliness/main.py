@@ -6,6 +6,7 @@ from utils.constants import (
     IMAGE_FILE_PATH_KEY,
 )
 from user_interface.ui import get_ui
+from utils.determine_underage_friendliness import determine_if_theme_existent
 import os
 
 if __name__ == "__main__":
@@ -33,11 +34,24 @@ if __name__ == "__main__":
     max_img_score, most_likely_img_path = get_max_score_and_post_data(
         image_topic_similarity_scores, img_text_data_set[IMAGE_FILE_PATH_KEY]
     )
+    is_theme_present_in_text = determine_if_theme_existent(
+        max_post_theme_score=max_text_score,
+        theme=topic_name,
+        threshold_percentage=10,
+        is_image=False,
+    )
+    is_theme_present_in_image = determine_if_theme_existent(
+        max_post_theme_score=max_img_score,
+        theme=topic_name,
+        threshold_percentage=10,
+        is_image=True,
+    )
 
     get_ui(
         img_path=most_likely_img_path,
         instagram_post_text=most_likely_text_post,
         topic_name=topic_name,
         profile_name=profile_name,
-        is_instagram_fulfilling_theme=True,
+        is_instagram_fulfilling_theme=is_theme_present_in_text
+        or is_theme_present_in_image,
     )

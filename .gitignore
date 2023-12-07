@@ -5,3 +5,5 @@ underage_instagram_friendliness/*/
 !underage_instagram_friendliness/user_interface
 underage_instagram_friendliness/user_interface/__pycache__/ui.cpython-39.pyc
 !underage_instagram_friendliness/baseline_scores
+!underage_instagram_friendliness/utils
+underage_instagram_friendliness/utils/__pycache__
