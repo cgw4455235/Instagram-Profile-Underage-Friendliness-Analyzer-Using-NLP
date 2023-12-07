@@ -10,6 +10,8 @@ import os
 if __name__ == "__main__":
     # Modify this
     profile_name = "mike.natter"
+
+    # Do not modify this
     topic_name, topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY
     directory = os.path.dirname(os.path.realpath(__file__))
     (

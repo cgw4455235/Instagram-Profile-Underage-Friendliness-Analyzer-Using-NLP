@@ -1,9 +1,9 @@
 
-underage_instagram_friendliness/.DS_Store
+code/.DS_Store
 .DS_Store
-underage_instagram_friendliness/*/
-!underage_instagram_friendliness/user_interface
-underage_instagram_friendliness/user_interface/__pycache__/ui.cpython-39.pyc
-!underage_instagram_friendliness/baseline_scores
-!underage_instagram_friendliness/utils
-underage_instagram_friendliness/utils/__pycache__
+code/*/
+!code/user_interface
+code/user_interface/__pycache__/ui.cpython-39.pyc
+!code/baseline_scores
+!code/utils
+code/utils/__pycache__
