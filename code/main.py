@@ -20,8 +20,8 @@ if __name__ == "__main__":
     directory = os.path.dirname(os.path.realpath(__file__))
     # Violent Theme Check
     (
-        text_post_topic_similarity_scores,
-        image_topic_similarity_scores,
+        text_post_educational_topic_similarity_scores,
+        image_educational_topic_similarity_scores,
         text_post_sentiment_scores,
         image_sentiment_scores,
         text_post_data_set,
@@ -40,17 +40,17 @@ if __name__ == "__main__":
         is_violent_theme_present_in_image,
     ) = find_max_score_and_determine_if_theme_in_profile(
         violent_topic_name,
-        text_post_topic_similarity_scores,
-        image_topic_similarity_scores,
+        text_post_educational_topic_similarity_scores,
+        image_educational_topic_similarity_scores,
         text_post_data_set,
         img_text_data_set,
-        10,
+        5,
     )
 
     # Educational Theme Check
     (
-        text_post_topic_similarity_scores,
-        image_topic_similarity_scores,
+        text_post_educational_topic_similarity_scores,
+        image_educational_topic_similarity_scores,
         _,
         _,
         text_post_data_set,
@@ -69,11 +69,29 @@ if __name__ == "__main__":
         is_educational_theme_present_in_image,
     ) = find_max_score_and_determine_if_theme_in_profile(
         education_topic_name,
-        text_post_topic_similarity_scores,
-        image_topic_similarity_scores,
+        text_post_educational_topic_similarity_scores,
+        image_educational_topic_similarity_scores,
         text_post_data_set,
         img_text_data_set,
-        15,
+        3,
+    )
+
+    # Negative sentiment check
+    (
+        most_negative_text_post,
+        is_negative_sentiment_in_text_present,
+    ) = find_max_negative_sentiment_score_and_determine_if_sentiment_is_present(
+        sentiment_scores=text_post_sentiment_scores,
+        pre_processed_posts=text_post_data_set,
+        is_image=False,
+    )
+    (
+        most_negative_img_post,
+        is_negative_sentiment_in_img_present,
+    ) = find_max_negative_sentiment_score_and_determine_if_sentiment_is_present(
+        sentiment_scores=image_sentiment_scores,
+        pre_processed_posts=img_text_data_set,
+        is_image=True,
     )
 
     get_ui(
@@ -82,14 +100,12 @@ if __name__ == "__main__":
         profile_name=profile_name,
         educational_img_path=most_educational_img_path,
         educational_instagram_post_text=most_educational_text_post,
-        is_violent_topic_in_instagram_post=is_violent_theme_present_in_text
-        or is_violent_theme_present_in_image,
-        is_educational_topic_in_instagram_post=is_educational_theme_present_in_text
-        or find_max_score_and_determine_if_theme_in_profile,
+        negative_text_post=most_negative_text_post,
+        negative_img_post=most_negative_img_post,
+        is_violent_topic_in_post_text=is_violent_theme_present_in_text,
+        is_violent_topic_in_post_img=is_violent_theme_present_in_image,
+        is_educational_topic_in_post_text=is_educational_theme_present_in_text,
+        is_educational_topic_in_post_img=is_educational_theme_present_in_image,
+        is_negative_sentiment_in_text_present=is_negative_sentiment_in_text_present,
+        is_negative_sentiment_in_img_present=is_negative_sentiment_in_img_present,
     )
-    # print(
-    # find_max_negative_sentiment_score_and_determine_if_sentiment_is_present(
-    #     sentiment_scores=text_post_sentiment_scores,
-    #     pre_processed_posts=text_post_data_set,
-    #     is_image=False,
-    # )
