@@ -8,3 +8,6 @@ code/user_interface/__pycache__/ui.cpython-39.pyc
 code/profile_data/*
 !code/profile_data/baseline_profiles.py
 code/utils/__pycache__
+code/__pycache__/generate_baseline_datasets_and_scores.cpython-39.pyc
+code/__pycache__/instagram_analysis_pipeline.cpython-39.pyc
+code/__pycache__/__init__.cpython-39.pyc
