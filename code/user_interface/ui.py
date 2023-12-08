@@ -12,20 +12,26 @@ class InstagramUnderageFriendlinessCheck:
         # Tell user result of analysis
         self.result_label = ttk.Label(root, text="Result: ", font=("Calibri", 30))
         self.result_label.grid(row=0, column=0, sticky="w", padx=10, pady=10)
+
+        self.final_result_content = ttk.Label(
+            root, text="Unknown", font=("Calibri", 30)
+        )
+        self.final_result_content.grid(row=0, column=1, sticky="w")
+
         self.violent_result_content = ttk.Label(
             root, text="Unknown", font=("Calibri", 30)
         )
-        self.violent_result_content.grid(row=0, column=1, sticky="w")
+        self.violent_result_content.grid(row=1, column=1, sticky="w")
 
         self.educational_result_content = ttk.Label(
             root, text="Unknown", font=("Calibri", 30)
         )
-        self.educational_result_content.grid(row=1, column=1, sticky="w")
+        self.educational_result_content.grid(row=2, column=1, sticky="w")
 
         self.negative_sentiment_result_content = ttk.Label(
             root, text="Unknown", font=("Calibri", 30)
         )
-        self.negative_sentiment_result_content.grid(row=2, column=1, sticky="w")
+        self.negative_sentiment_result_content.grid(row=3, column=1, sticky="w")
 
         # show Instagram Image
         # Violence
@@ -34,9 +40,9 @@ class InstagramUnderageFriendlinessCheck:
             text="Violent Instagram Image (empty if nonexistent): ",
             font=("Calibri", 20),
         )
-        self.violent_image_label.grid(row=3, column=0, sticky="nw", padx=10, pady=10)
+        self.violent_image_label.grid(row=4, column=0, sticky="nw", padx=10, pady=10)
         self.violent_image_panel = ttk.Label(root)
-        self.violent_image_panel.grid(row=3, column=1, sticky="w")
+        self.violent_image_panel.grid(row=4, column=1, sticky="w")
 
         # Education
         self.educational_image_label = ttk.Label(
@@ -45,10 +51,10 @@ class InstagramUnderageFriendlinessCheck:
             font=("Calibri", 20),
         )
         self.educational_image_label.grid(
-            row=4, column=0, sticky="nw", padx=10, pady=10
+            row=5, column=0, sticky="nw", padx=10, pady=10
         )
         self.educational_image_panel = ttk.Label(root)
-        self.educational_image_panel.grid(row=4, column=1, sticky="w")
+        self.educational_image_panel.grid(row=5, column=1, sticky="w")
 
         # Negative Sentiment
         self.negative_sentiment_image_label = ttk.Label(
@@ -57,10 +63,10 @@ class InstagramUnderageFriendlinessCheck:
             font=("Calibri", 20),
         )
         self.negative_sentiment_image_label.grid(
-            row=5, column=0, sticky="nw", padx=10, pady=10
+            row=6, column=0, sticky="nw", padx=10, pady=10
         )
         self.negative_sentiment_image_panel = ttk.Label(root)
-        self.negative_sentiment_image_panel.grid(row=5, column=1, sticky="w")
+        self.negative_sentiment_image_panel.grid(row=6, column=1, sticky="w")
 
         # show Instagram post text
         self.violent_text_label = ttk.Label(
@@ -68,33 +74,33 @@ class InstagramUnderageFriendlinessCheck:
             text="Sample Violent Instagram Post Text (empty if nonexistent): ",
             font=("Calibri", 30),
         )
-        self.violent_text_label.grid(row=6, column=0, sticky="nw", padx=10, pady=0)
+        self.violent_text_label.grid(row=7, column=0, sticky="nw", padx=10, pady=0)
         self.violent_text_content = ttk.Label(
             root, font=("Calibri", 25), wraplength=500
         )
-        self.violent_text_content.grid(row=6, column=1, sticky="w")
+        self.violent_text_content.grid(row=7, column=1, sticky="w")
 
         self.educational_text_label = ttk.Label(
             root,
             text="Sample Educational Instagram Post Text (empty if nonexistent): ",
             font=("Calibri", 30),
         )
-        self.educational_text_label.grid(row=7, column=0, sticky="nw", padx=10, pady=0)
+        self.educational_text_label.grid(row=8, column=0, sticky="nw", padx=10, pady=0)
         self.educational_text_content = ttk.Label(
             root, font=("Calibri", 25), wraplength=500
         )
-        self.educational_text_content.grid(row=7, column=1, sticky="w")
+        self.educational_text_content.grid(row=8, column=1, sticky="w")
 
         self.negative_text_label = ttk.Label(
             root,
             text="Sample Negative Sentiment Instagram Post Text (empty if nonexistent): ",
             font=("Calibri", 30),
         )
-        self.negative_text_label.grid(row=8, column=0, sticky="nw", padx=10, pady=0)
+        self.negative_text_label.grid(row=9, column=0, sticky="nw", padx=10, pady=0)
         self.negative_text_content = ttk.Label(
             root, font=("Calibri", 25), wraplength=500
         )
-        self.negative_text_content.grid(row=8, column=1, sticky="w")
+        self.negative_text_content.grid(row=9, column=1, sticky="w")
 
     def set_display_content(
         self,
@@ -112,6 +118,16 @@ class InstagramUnderageFriendlinessCheck:
         is_negative_sentiment_in_img_present,
         instagram_profile_name,
     ):
+        self.final_result_content.config(
+            text=f"The Instagram profile {instagram_profile_name} is not appropriate for underage audience"
+            if (
+                is_violent_topic_in_instagram_post_text
+                or is_violent_topic_in_instagram_post_img
+                or is_negative_sentiment_in_text_present
+                or is_negative_sentiment_in_img_present
+            )
+            else f"The Instagram profile {instagram_profile_name} is appropriate for underage appropriate"
+        )
         self.violent_result_content.config(
             text=f"The Instagram profile {instagram_profile_name} contains violent content"
             if is_violent_topic_in_instagram_post_text
