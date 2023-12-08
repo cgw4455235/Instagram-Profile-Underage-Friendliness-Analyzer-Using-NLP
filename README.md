@@ -13,6 +13,10 @@ This app is generally implemented in the following manner:
 6. Finally, we obtain the highest scores for each sentiment and theme, then check if they have surpassed the baselines of those sentiments and themes, which are empirically determined via a set of collected 60 baseline Instagram profiles that have neutral sentiment and non-educational and non-violent themes. See ` code/utils/determine_underage_friendliness.py` and `code/generate_baseline_datasets_and_scores.py`. All the profiles used to establish the baseline are in this list `code/profile_data/baseline_profiles.py`
 7. Display the analytical results via Python `tk` UI library and after comparing whether the scores have significantly surpassed their baseline scores.
 
+## Future Works
+It's recommended that to expand on this work, people can build features that are related to video content age appropriate evaluation features. 
+
+
 ## code/profile_data/baseline_profiles.py
 This file contains all the 60 baseline Instagram profiles used to establish the baseline scores for each sentiment (i.e. positive, negative and neutral) and theme (i.e. violent and educational). 
 
@@ -39,6 +43,9 @@ This file contains code to analyze the sentiment from a text input, including ne
 This file contains to determine how similar a text input is to another text input
 ## code/utils/topic_types.py
 This file contains constants about the thematic types this Python app can analyze, including violent and educational.   
+## code/evaluate_effiacy.py
+This file runs logic that evaluates whether the classifier works on a human selected set of profiles. It saves the result in a pickle file. We have 10 profiles each for negative sentiment, violence and education.
+
 
 # How to Use This Software
 ## Set Up Conda Environment

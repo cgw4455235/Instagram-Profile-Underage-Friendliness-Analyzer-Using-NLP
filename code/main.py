@@ -9,7 +9,7 @@ import os
 
 if __name__ == "__main__":
     # Modify this
-    profile_name = "vegasgungirl"
+    profile_name = "hilaryjacobshendel"
 
     # Do not modify this
     violent_topic_name, violent_topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY

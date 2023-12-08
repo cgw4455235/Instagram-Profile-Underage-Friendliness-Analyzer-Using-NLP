@@ -82,7 +82,7 @@ def find_max_sentiment_score(
     for idx, score_and_label in enumerate(sentiment_scores):
         if score_and_label["label"] == sentiment_label:
             if score_and_label["score"] > max_score:
-                max_score, max_post_idx = score_and_label, idx
+                max_score, max_post_idx = score_and_label["score"], idx
     if max_post_idx == -1:
         return None, posts[0]
     return sentiment_scores[idx], posts[max_post_idx]
