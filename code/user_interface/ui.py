@@ -162,7 +162,6 @@ class InstagramUnderageFriendlinessCheck:
             img = ImageTk.PhotoImage(img)
             self.educational_image_panel.config(image=img)
             self.educational_image_panel.image = img
-        print(os.path.exists(negative_img_post))
         if is_negative_sentiment_in_img_present and os.path.exists(negative_img_post):
             img = Image.open(negative_img_post)
             img = img.resize((250, 250), Image.ANTIALIAS)
