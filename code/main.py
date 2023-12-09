@@ -9,10 +9,10 @@ import os
 
 if __name__ == "__main__":
     # Modify this
-    profile_name = "neatoday"  # National Education Association
+    profile_name = "vegasgungirl"
 
-    violent_check_threshold_sensitivity = 5  # larger is more sensitive
-    educational_threshold_sensitivty = 3  # larger is more sensitive
+    violent_check_threshold_sensitivity = 5  # larger is less sensitive
+    educational_threshold_sensitivty = 3  # larger is less sensitive
 
     # Do not modify this
     violent_topic_name, violent_topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY
