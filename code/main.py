@@ -9,7 +9,10 @@ import os
 
 if __name__ == "__main__":
     # Modify this
-    profile_name = "hilaryjacobshendel"
+    profile_name = "neatoday"  # National Education Association
+
+    violent_check_threshold_sensitivity = 5  # larger is more sensitive
+    educational_threshold_sensitivty = 3  # larger is more sensitive
 
     # Do not modify this
     violent_topic_name, violent_topic_query = topic_types.VIOLENCE_TOPIC_NAME_AND_QUERY
@@ -44,7 +47,7 @@ if __name__ == "__main__":
         image_educational_topic_similarity_scores,
         text_post_data_set,
         img_text_data_set,
-        5,
+        violent_check_threshold_sensitivity,
     )
 
     # Educational Theme Check
@@ -73,7 +76,7 @@ if __name__ == "__main__":
         image_educational_topic_similarity_scores,
         text_post_data_set,
         img_text_data_set,
-        3,
+        educational_threshold_sensitivty,
     )
 
     # Negative sentiment check
