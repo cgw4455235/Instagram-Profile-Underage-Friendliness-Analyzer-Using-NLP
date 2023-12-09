@@ -45,7 +45,10 @@ This file contains to determine how similar a text input is to another text inpu
 This file contains constants about the thematic types this Python app can analyze, including violent and educational.   
 ## code/evaluate_effiacy.py
 This file runs logic that evaluates whether the classifier works on a human selected set of profiles. It saves the result in a pickle file. We have 10 profiles each for negative sentiment, violence and education.
-
+## code/baseline_scores
+contains the baseline scores evaluated for the classifier that are collected from the 30 baseline profiles
+# code/evaluation_scores
+contains the final evaluation accuracy scores for the classifier 
 
 # How to Use This Software
 ## Set Up Conda Environment
