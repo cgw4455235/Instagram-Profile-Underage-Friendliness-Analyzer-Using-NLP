@@ -11,6 +11,7 @@ from profile_data.evaluation_profiles import (
     negative_evaluation_profiles,
 )
 import pickle
+import torch
 
 EVALUATION_RESULT_PKL = "evaluation_results.pkl"
 
@@ -100,7 +101,9 @@ if __name__ == "__main__":
     pickle_dump_location = (
         current_path + "/" + "evaluation_scores" + "/" + EVALUATION_RESULT_PKL
     )
-    if EVALUATION_RESULT_PKL not in os.listdir(current_path):
+    if EVALUATION_RESULT_PKL not in os.listdir(
+        current_path + "/" + "evaluation_scores"
+    ):
         for profile_name in violent_evaluation_profiles:
             violent_profile_analysis_results.append(
                 evaluate_theme_efficacy(
@@ -119,15 +122,15 @@ if __name__ == "__main__":
                 evaluate_sentiment_efficacy(profile_name)
             )
 
-    with open(pickle_dump_location, "wb") as f:
-        pickle.dump(
-            [
-                violent_profile_analysis_results,
-                education_profile_analysis_results,
-                negative_profile_analysis_results,
-            ],
-            f,
-        )
+        with open(pickle_dump_location, "wb") as f:
+            pickle.dump(
+                [
+                    violent_profile_analysis_results,
+                    education_profile_analysis_results,
+                    negative_profile_analysis_results,
+                ],
+                f,
+            )
 
     with open(pickle_dump_location, "rb") as f:
         (
@@ -136,5 +139,11 @@ if __name__ == "__main__":
             negative_profile_analysis_results,
         ) = pickle.load(f)
     print(violent_profile_analysis_results)
-    print(education_profile_analysis_results)
-    print(negative_profile_analysis_results)
+    print(torch.mean(torch.FloatTensor(violent_profile_analysis_results)))
+    print(torch.mean(torch.FloatTensor(education_profile_analysis_results)))
+    print(torch.mean(torch.FloatTensor(negative_profile_analysis_results)))
+    """
+    tensor(0.9000)
+    tensor(0.5000)
+    tensor(0.8000)
+    """
