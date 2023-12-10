@@ -71,7 +71,9 @@ conda env create -f environment.yml
 * adjust sensitivity via the `violent_check_threshold_sensitivity` and `educational_threshold_sensitivty` for topic evaluation
 
 ## Fix Instagram Connection Issue
-if there's an error from the code that says you cannot connect to Instagram, log into Instagram via Firefox, then run `get_cookie.py` under `code/utils` to obtain a path to your cookie (it will print the path on the console of your code editor or terminal), then find the path value in line 12 in `code/utils/crawler.py` and replace the example path value with this path value output from `get_cookie.py`. 
+* If there's an error from the code that says you cannot connect to Instagram, log into Instagram via Firefox
+* then run `get_cookie.py` under `code/utils` to obtain a path to your cookie (it will print the path on the console of your code editor or terminal). The output portion that you need to copy would be something like `/Users/asddsa/.config/instaloader/session-acc_test_use`
+* then find the path value in line 12 in `code/utils/crawler.py` and replace the example path value with this path value output from `get_cookie.py`. 
 
 # Contribution of Each Team Member
 
