@@ -62,6 +62,7 @@ conda env create -f environment.yml
 ``` 
 3. then run `conda activate py39` . This will ready all the dependencies for you.
 4. In your `~/zsh.rc` on Mac or a Windows/Linux equivalent, add `export PYTHONPATH="${PYTHONPATH}:[YOUR PATH]/cs410-final-proj/code` , so Python can find this package properly.
+5. Clone this repo with `git clone https://github.com/cgw4455235/cs410-final-proj`
 
 ## Run an Instagram Profile Analysis
 * Make sure you have a valid internet connection to access Hugging Face
