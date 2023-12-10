@@ -1,5 +1,5 @@
 # Instagram Profile Underage Friendliness Analysis Tool
-
+This README is the software documentation for this project.
 # Video Presentation
 [Please find video presentation here](https://veed.io/view/c5e12765-4de5-4cbb-8219-1db6b63aabfe)
 
