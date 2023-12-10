@@ -19,38 +19,38 @@ This app is generally implemented in the following manner:
 ## Future Works
 It's recommended that to expand on this work, people can build features that are related to video content age appropriate evaluation features. 
 
-
-## code/profile_data/baseline_profiles.py
+## Code File and Purpose
+### code/profile_data/baseline_profiles.py
 This file contains all the 60 baseline Instagram profiles used to establish the baseline scores for each sentiment (i.e. positive, negative and neutral) and theme (i.e. violent and educational). 
 
-## code/main.py
+### code/main.py
 This file contains the actual logic for running the app for users to specify an Instagram profile. After the profile is specified, the Python app will download five posts from the Instagram profile and conduct theme and sentiment analysis by using pre-trained models to extract themes and sentiments from pictures and text posts of this profile to determine whether the profile contains violent themes, educational themes, and negative sentiment. When this function finishes running, it will display a simple UI to show the results of the analysis regarding what themes and sentiments this Instagram profile contains.
 Please find instructions regarding how to use this app in the later section of this README.
 
-## code/generate_baseline_datasets_and_scores.py
+### code/generate_baseline_datasets_and_scores.py
 This file contains logic for establishing the baseline sentiment (i.e. positive, negative and neutral) scores and theme (i.e. violent and educational) scores by calculating sentiment and thematic scores on 60 Instagram profiles. Those baseline scores serve as the lowest threshold for determining whether a sentiment or theme exists in a Instagram text post or image post. This app calculates the sentiment and thematic score for all of these profiles and identify their averages, which will serve as the baseline scores. Then, it will save all the baseline data as pickle files in `code/baseline_scores`
 
-## code/utils/constants.py
+### code/utils/constants.py
 This file stores general constant variables like commonly used dictionary key names and sentiment labels.
-## code/utils/crawler.py
+### code/utils/crawler.py
 This file contains Python code for extracting Instagram profiles' text and photo data and saving them on the local device.
-## code/utils/determine_underage_friendliness.py
+### code/utils/determine_underage_friendliness.py
 This file has logic that takes in the score of a sentiment analysis/thematic analysis on a text post or image post and determine whether this post contains a theme/sentiment.
-## code/utils/img_to_text.py
+### code/utils/img_to_text.py
 This file converts an image to descriptive text.
-## code/utils/process_data.py
+### code/utils/process_data.py
  This file contains code to pre-process raw image and text data.
-## code/utils/sentiment_analysis.py
+### code/utils/sentiment_analysis.py
 This file contains code to analyze the sentiment from a text input, including negative, positive and neutral.
-## code/utils/topic_similarity.py
+### code/utils/topic_similarity.py
 This file contains to determine how similar a text input is to another text input
-## code/utils/topic_types.py
+### code/utils/topic_types.py
 This file contains constants about the thematic types this Python app can analyze, including violent and educational.   
-## code/evaluate_effiacy.py
+### code/evaluate_effiacy.py
 This file runs logic that evaluates whether the classifier works on a human selected set of profiles. It saves the result in a pickle file. We have 10 profiles each for negative sentiment, violence and education.
-## code/baseline_scores
+### code/baseline_scores
 contains the baseline scores evaluated for the classifier that are collected from the 30 baseline profiles
-# code/evaluation_scores
+### code/evaluation_scores
 contains the final evaluation accuracy scores for the classifier 
 
 # How to Use This Software
