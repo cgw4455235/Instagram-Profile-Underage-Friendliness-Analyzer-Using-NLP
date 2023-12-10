@@ -8,7 +8,7 @@ This Python app can accept a user input for an Instagram profile username and co
  
 # Implementation of Software
 This app is generally implemented in the following manner:
-1. It has a crawler functionality that leverages `Instagram Loader` library to create customized crawler logic. This custom crawler logic will download five posts from a targeted Instagram profile including text and images while excluding videos.
+1. It has a crawler functionality that leverages `Instaloader` library ([Link](https://instaloader.github.io/)) to create customized crawler logic. This custom crawler logic will download five posts from a targeted Instagram profile including text and images while excluding videos.
 2.  After images and texts from the Instagram profile are downloaded, they're pre-processed via common Python libraries like nltk to remove stopwords. Then, images are converted into text descriptions via the `Salesforce/blip-image-captioning-large` pre-trained model.
 3. Then, we would get sentence embeddings of those preprocessed text data via `code/topic_similarity.py` via the pre-trained `sentence-transformers/all-MiniLM-L6-v2` model. 
 4. Then, the sentence embeddings are passed into a cosine similarity function called `torch.nn.CosineSimilarity` between those sentence embeddings of the preprocessed Instagram post data and the sentence embeddings of the topical queries (i.e. educational topic and violent topic). We return the scores.
