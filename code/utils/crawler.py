@@ -5,8 +5,8 @@ from pathlib import Path
 
 
 def download_random_n_posts(top_n: int, profile_name: str, subpath: str) -> None:
-    crawler_user_name = os.getenv("instagram_user_name")
-    crawler_password = os.getenv("instagram_password")
+    # crawler_user_name = os.getenv("instagram_user_name")
+    # crawler_password = os.getenv("instagram_password")
     L = Instaloader(download_videos=False)
     # L.load_session_from_file(
     #     "acc_test_use", "/Users/asddsa/.config/instaloader/session-acc_test_use"
