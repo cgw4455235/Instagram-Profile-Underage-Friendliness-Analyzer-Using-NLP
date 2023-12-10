@@ -1,5 +1,8 @@
 # Instagram Profile Underage Friendliness Analysis Tool
 
+# Video Presentation
+[Please find video presentation here](https://veed.io/view/c5e12765-4de5-4cbb-8219-1db6b63aabfe)
+
 # Overview of the Function of the code
 This Python app can accept a user input for an Instagram profile username and collate scores to determine whether the profile contains violent themes, educational themes, and negative sentiment. Then, it will display those results on a simple UI for users to see the result of this analysis regarding whether this Instagram profile is age-appropriate. Generally-speaking, the app consists of low-intensity crawling functionalities, text-to-image conversion capabilities by leveraging pre-trained models, cosine similarity calculation between two vectors, and a simple user interface created with the Python `tk` library
  
