@@ -66,7 +66,8 @@ conda env create -f environment.yml
 
 ## Run an Instagram Profile Analysis
 * Make sure you have a valid internet connection to access Hugging Face
-* Under `code/main.py`, you can modify the Instagram profile you want to analyze by modifying the `profile_name` variable. You don't need to do anything else. Then, run `main.py`directly via `python [PATH TO LOCAL CLONED REPO]/code/main.py`. If it succeeds, a simple UI will pop up on your screen to display the analysis results and samples of posts from the Instagram profile.
+* Under `code/main.py`, you can modify the Instagram profile you want to analyze by modifying the `profile_name` variable. You don't need to do anything else. 
+* Then, run `main.py`directly via `python [PATH TO LOCAL CLONED REPO]/code/main.py`. If it succeeds, a simple UI will pop up on your screen to display the analysis results and samples of posts from the Instagram profile.
 * adjust sensitivity via the `violent_check_threshold_sensitivity` and `educational_threshold_sensitivty` for topic evaluation
 
 ## Fix Instagram Connection Issue
